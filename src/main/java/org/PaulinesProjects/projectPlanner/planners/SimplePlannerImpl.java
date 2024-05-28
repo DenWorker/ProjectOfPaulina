@@ -21,19 +21,21 @@ import java.util.stream.Collectors;
 public class SimplePlannerImpl implements Planner {
 
     private List<Event> eventList;
+    private int generateValueOfId;
 
     public SimplePlannerImpl() {
         eventList = new ArrayList<>();
+        generateValueOfId = 0;
     }
 
     @Override
     public void addEvent(LocalDateTime beginOfEvent, LocalDateTime endOfEvent, String event) {
-        eventList.add(new SimpleEventImpl(eventList.size(), beginOfEvent, endOfEvent, event));
+        eventList.add(new SimpleEventImpl(generateValueOfId++, beginOfEvent, endOfEvent, event));
     }
 
     @Override
     public void addEventOfToday(LocalTime timeOfBegin, LocalTime timeOfEnd, String event) {
-        eventList.add(new SimpleEventImpl(eventList.size(),
+        eventList.add(new SimpleEventImpl(generateValueOfId++,
                 LocalDateTime.of(LocalDate.now(), timeOfBegin),
                 LocalDateTime.of(LocalDate.now(), timeOfEnd),
                 event));
@@ -41,7 +43,7 @@ public class SimplePlannerImpl implements Planner {
 
     @Override
     public void addEventOfTomorrow(LocalTime timeOfBegin, LocalTime timeOfEnd, String event) {
-        eventList.add(new SimpleEventImpl(eventList.size(),
+        eventList.add(new SimpleEventImpl(generateValueOfId++,
                 LocalDateTime.of(LocalDate.now().plusDays(1), timeOfBegin),
                 LocalDateTime.of(LocalDate.now().plusDays(1), timeOfEnd),
                 event));
