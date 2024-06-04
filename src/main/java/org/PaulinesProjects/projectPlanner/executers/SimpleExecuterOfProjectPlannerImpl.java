@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 @AllArgsConstructor
@@ -80,10 +81,13 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
             if (beginOfEvent.isBefore(LocalDateTime.now())) {
                 throw new RuntimeException("Дата начала не может быть больше чем сейчас!");
             }
-
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEvent(beginOfEvent, endOfEvent, event);
+
+        } catch (DateTimeParseException dateTimeParseException) {
+            System.out.println("Неверный формат ввода даты и времени!");
+            addEvent();
         } catch (RuntimeException runtimeException) {
             System.out.println("Возникли проблемы! " + runtimeException.getMessage());
             addEvent();
@@ -111,6 +115,10 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEventOfToday(timeOfBegin, timeOfEnd, event);
+
+        } catch (DateTimeParseException dateTimeParseException) {
+            System.out.println("Неверный формат ввода времени!");
+            addEventOfToday();
         } catch (RuntimeException runtimeException) {
             System.out.println("Возникли проблемы! " + runtimeException.getMessage());
             addEventOfToday();
@@ -138,6 +146,10 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEventOfTomorrow(timeOfBegin, timeOfEnd, event);
+
+        } catch (DateTimeParseException dateTimeParseException) {
+            System.out.println("Неверный формат ввода времени!");
+            addEventOfTomorrow();
         } catch (RuntimeException runtimeException) {
             System.out.println("Возникли проблемы! " + runtimeException.getMessage());
             addEventOfTomorrow();
