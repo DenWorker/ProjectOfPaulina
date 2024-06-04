@@ -66,53 +66,73 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
         Scanner consoleScanner = new Scanner(System.in);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+        try {
+            System.out.println("Введите дату и время начала мероприятия в формате yyyy-MM-dd HH:mm:");
+            LocalDateTime beginOfEvent = LocalDateTime.parse(consoleScanner.nextLine(), dateTimeFormatter);
 
-        System.out.println("Введите дату и время начала мероприятия в формате yyyy-MM-dd HH:mm:");
-        LocalDateTime beginOfEvent = LocalDateTime.parse(consoleScanner.nextLine(), dateTimeFormatter);
+            System.out.println("Введите дату и время окончания мероприятия в формате yyyy-MM-dd HH:mm:");
+            LocalDateTime endOfEvent = LocalDateTime.parse(consoleScanner.nextLine(), dateTimeFormatter);
 
-        System.out.println("Введите дату и время окончания мероприятия в формате yyyy-MM-dd HH:mm:");
-        LocalDateTime endOfEvent = LocalDateTime.parse(consoleScanner.nextLine(), dateTimeFormatter);
+            System.out.println("Введите мероприятие:");
+            String event = consoleScanner.nextLine();
+            planner.addEvent(beginOfEvent, endOfEvent, event);
+        } catch (Exception exception) {
+            System.out.println("Возникли проблемы! Попробуйте ещё раз!");
+            addEvent();
+        }
 
-        System.out.println("Введите мероприятие:");
-        String event = consoleScanner.nextLine();
-        planner.addEvent(beginOfEvent, endOfEvent, event);
     }
 
     private void addEventOfToday() {
         Scanner consoleScanner = new Scanner(System.in);
+        try {
+            System.out.println("Введите время начала мероприятия в формате HH:mm:");
+            LocalTime timeOfBegin = LocalTime.parse(consoleScanner.nextLine());
 
-        System.out.println("Введите время начала мероприятия в формате HH:mm:");
-        LocalTime timeOfBegin = LocalTime.parse(consoleScanner.nextLine());
+            System.out.println("Введите время окончания мероприятия в формате HH:mm:");
+            LocalTime timeOfEnd = LocalTime.parse(consoleScanner.nextLine());
 
-        System.out.println("Введите время окончания мероприятия в формате HH:mm:");
-        LocalTime timeOfEnd = LocalTime.parse(consoleScanner.nextLine());
-
-        System.out.println("Введите мероприятие:");
-        String event = consoleScanner.nextLine();
-        planner.addEventOfToday(timeOfBegin, timeOfEnd, event);
+            System.out.println("Введите мероприятие:");
+            String event = consoleScanner.nextLine();
+            planner.addEventOfToday(timeOfBegin, timeOfEnd, event);
+        } catch (Exception exception) {
+            System.out.println("Возникли проблемы! Попробуйте ещё раз!");
+            addEventOfToday();
+        }
     }
 
     private void addEventOfTomorrow() {
         Scanner consoleScanner = new Scanner(System.in);
 
-        System.out.println("Введите время начала мероприятия в формате HH:mm:");
-        LocalTime timeOfBegin = LocalTime.parse(consoleScanner.nextLine());
+        try {
+            System.out.println("Введите время начала мероприятия в формате HH:mm:");
+            LocalTime timeOfBegin = LocalTime.parse(consoleScanner.nextLine());
 
-        System.out.println("Введите время окончания мероприятия в формате HH:mm:");
-        LocalTime timeOfEnd = LocalTime.parse(consoleScanner.nextLine());
+            System.out.println("Введите время окончания мероприятия в формате HH:mm:");
+            LocalTime timeOfEnd = LocalTime.parse(consoleScanner.nextLine());
 
-        System.out.println("Введите мероприятие:");
-        String event = consoleScanner.nextLine();
-        planner.addEventOfTomorrow(timeOfBegin, timeOfEnd, event);
+            System.out.println("Введите мероприятие:");
+            String event = consoleScanner.nextLine();
+            planner.addEventOfTomorrow(timeOfBegin, timeOfEnd, event);
+        } catch (Exception exception) {
+            System.out.println("Возникли проблемы! Попробуйте ещё раз!");
+            addEventOfTomorrow();
+        }
     }
 
     private void deleteEventById() {
         Scanner consoleScanner = new Scanner(System.in);
 
-        System.out.println("Введите id удаляемого мероприятия:");
-        int idOfEvent = consoleScanner.nextInt();
-        planner.deleteEventById(idOfEvent);
-        System.out.println("Мероприятие с id " + idOfEvent + " было успешно удалено!");
+        try {
+            System.out.println("Введите id удаляемого мероприятия:");
+            int idOfEvent = consoleScanner.nextInt();
+            planner.deleteEventById(idOfEvent);
+            System.out.println("Мероприятие с id " + idOfEvent + " было успешно удалено!");
+        } catch (Exception exception) {
+            System.out.println("Возникли проблемы! Попробуйте ещё раз!");
+            deleteEventById();
+        }
+
     }
 
     private void showInformationAboutAllEvents() {
@@ -121,10 +141,16 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
 
     private void showInformationAboutEventsByDate() {
         Scanner consoleScanner = new Scanner(System.in);
-        System.out.println("Введите дату мероприятия в формате yyyy-MM-dd:");
 
-        LocalDate beginOfEvent = LocalDate.parse(consoleScanner.nextLine());
-        System.out.println(planner.getInformationAboutEventsByDate(beginOfEvent));
+        try {
+            System.out.println("Введите дату мероприятия в формате yyyy-MM-dd:");
+
+            LocalDate beginOfEvent = LocalDate.parse(consoleScanner.nextLine());
+            System.out.println(planner.getInformationAboutEventsByDate(beginOfEvent));
+        } catch (Exception exception) {
+            System.out.println("Возникли проблемы! Попробуйте ещё раз!");
+            showInformationAboutEventsByDate();
+        }
     }
 
 }
