@@ -73,6 +73,10 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
             System.out.println("Введите дату и время окончания мероприятия в формате yyyy-MM-dd HH:mm:");
             LocalDateTime endOfEvent = LocalDateTime.parse(consoleScanner.nextLine(), dateTimeFormatter);
 
+            if (beginOfEvent.compareTo(endOfEvent) >= 1) {
+                throw new RuntimeException();
+            }
+
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEvent(beginOfEvent, endOfEvent, event);
@@ -92,6 +96,10 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
             System.out.println("Введите время окончания мероприятия в формате HH:mm:");
             LocalTime timeOfEnd = LocalTime.parse(consoleScanner.nextLine());
 
+            if (timeOfBegin.compareTo(timeOfEnd) >= 1) {
+                throw new RuntimeException();
+            }
+
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEventOfToday(timeOfBegin, timeOfEnd, event);
@@ -110,6 +118,10 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
 
             System.out.println("Введите время окончания мероприятия в формате HH:mm:");
             LocalTime timeOfEnd = LocalTime.parse(consoleScanner.nextLine());
+
+            if (timeOfBegin.compareTo(timeOfEnd) >= 1) {
+                throw new RuntimeException();
+            }
 
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
