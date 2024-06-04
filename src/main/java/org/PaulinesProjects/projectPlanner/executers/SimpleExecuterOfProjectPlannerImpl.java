@@ -73,15 +73,19 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
             System.out.println("Введите дату и время окончания мероприятия в формате yyyy-MM-dd HH:mm:");
             LocalDateTime endOfEvent = LocalDateTime.parse(consoleScanner.nextLine(), dateTimeFormatter);
 
-            if (beginOfEvent.compareTo(endOfEvent) >= 1) {
-                throw new RuntimeException();
+            if (beginOfEvent.isAfter(endOfEvent)) {
+                throw new RuntimeException("Дата начала не может быть больше даты окончания!");
+            }
+
+            if (beginOfEvent.isBefore(LocalDateTime.now())) {
+                throw new RuntimeException("Дата начала не может быть больше чем сейчас!");
             }
 
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEvent(beginOfEvent, endOfEvent, event);
-        } catch (Exception exception) {
-            System.out.println("Возникли проблемы! Попробуйте ещё раз!");
+        } catch (RuntimeException runtimeException) {
+            System.out.println("Возникли проблемы! " + runtimeException.getMessage());
             addEvent();
         }
 
