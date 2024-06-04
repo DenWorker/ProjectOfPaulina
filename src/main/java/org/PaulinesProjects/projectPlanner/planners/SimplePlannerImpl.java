@@ -51,17 +51,27 @@ public class SimplePlannerImpl implements Planner {
 
     @Override
     public String getInformationAboutAllEvents() {
-        return eventList.stream()
-                .map(Event::getInformationAboutEvent)
-                .collect(Collectors.joining());
+        if (eventList.isEmpty()) {
+            return "Нет запланированных мероприятий!";
+        } else {
+            return eventList.stream()
+                    .map(Event::getInformationAboutEvent)
+                    .collect(Collectors.joining());
+        }
     }
 
     @Override
     public String getInformationAboutEventsByDate(LocalDate beginOfEvent) {
-        return eventList.stream()
+        String result = eventList.stream()
                 .filter(t -> t.getBeginOfEvent().toLocalDate().equals(beginOfEvent))
                 .map(Event::getInformationAboutEvent)
                 .collect(Collectors.joining());
+
+        if (result.isEmpty()) {
+            return "Нет запланированных мероприятий на заданное число!";
+        } else {
+            return result;
+        }
     }
 
     @Override
