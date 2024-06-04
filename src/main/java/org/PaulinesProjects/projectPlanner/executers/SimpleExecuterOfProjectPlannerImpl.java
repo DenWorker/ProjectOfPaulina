@@ -193,7 +193,7 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
 
         } catch (DateTimeParseException dateTimeParseException) {
             System.out.println("Неверный формат ввода даты и времени!");
-            addEvent();
+            showInformationAboutEventsByDate();
         } catch (Exception exception) {
             System.out.println("Возникли проблемы! Попробуйте ещё раз!");
             showInformationAboutEventsByDate();
