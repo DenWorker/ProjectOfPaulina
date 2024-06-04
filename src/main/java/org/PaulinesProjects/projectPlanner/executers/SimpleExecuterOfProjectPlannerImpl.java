@@ -186,6 +186,10 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
 
             LocalDate beginOfEvent = LocalDate.parse(consoleScanner.nextLine());
             System.out.println(planner.getInformationAboutEventsByDate(beginOfEvent));
+
+        } catch (DateTimeParseException dateTimeParseException) {
+            System.out.println("Неверный формат ввода даты и времени!");
+            addEvent();
         } catch (Exception exception) {
             System.out.println("Возникли проблемы! Попробуйте ещё раз!");
             showInformationAboutEventsByDate();
