@@ -139,10 +139,6 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
                 throw new RuntimeException("Время начала не может быть больше времени окончания!");
             }
 
-            if (timeOfBegin.isBefore(LocalTime.now())) {
-                throw new RuntimeException("Время начала не может быть больше чем сейчас!");
-            }
-
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEventOfTomorrow(timeOfBegin, timeOfEnd, event);
