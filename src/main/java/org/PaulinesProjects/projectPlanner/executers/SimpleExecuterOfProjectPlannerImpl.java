@@ -100,15 +100,19 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
             System.out.println("Введите время окончания мероприятия в формате HH:mm:");
             LocalTime timeOfEnd = LocalTime.parse(consoleScanner.nextLine());
 
-            if (timeOfBegin.compareTo(timeOfEnd) >= 1) {
-                throw new RuntimeException();
+            if (timeOfBegin.isAfter(timeOfEnd)) {
+                throw new RuntimeException("Время начала не может быть больше времени окончания!");
+            }
+
+            if (timeOfBegin.isBefore(LocalTime.now())) {
+                throw new RuntimeException("Время начала не может быть больше чем сейчас!");
             }
 
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEventOfToday(timeOfBegin, timeOfEnd, event);
-        } catch (Exception exception) {
-            System.out.println("Возникли проблемы! Попробуйте ещё раз!");
+        } catch (RuntimeException runtimeException) {
+            System.out.println("Возникли проблемы! " + runtimeException.getMessage());
             addEventOfToday();
         }
     }
@@ -123,15 +127,19 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
             System.out.println("Введите время окончания мероприятия в формате HH:mm:");
             LocalTime timeOfEnd = LocalTime.parse(consoleScanner.nextLine());
 
-            if (timeOfBegin.compareTo(timeOfEnd) >= 1) {
-                throw new RuntimeException();
+            if (timeOfBegin.isAfter(timeOfEnd)) {
+                throw new RuntimeException("Время начала не может быть больше времени окончания!");
+            }
+
+            if (timeOfBegin.isBefore(LocalTime.now())) {
+                throw new RuntimeException("Время начала не может быть больше чем сейчас!");
             }
 
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEventOfTomorrow(timeOfBegin, timeOfEnd, event);
-        } catch (Exception exception) {
-            System.out.println("Возникли проблемы! Попробуйте ещё раз!");
+        } catch (RuntimeException runtimeException) {
+            System.out.println("Возникли проблемы! " + runtimeException.getMessage());
             addEventOfTomorrow();
         }
     }
