@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @AllArgsConstructor
@@ -31,7 +32,14 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
                                         
                     """);
 
-            command = consoleScanner.nextInt();
+            try {
+                command = consoleScanner.nextInt();
+            } catch (InputMismatchException inputMismatchException) {
+                System.out.println("Неверный ввод данных");
+                run();
+                break;
+            }
+
             switch (command) {
                 case 1 -> showInformationAboutAllEvents();
                 case 2 -> showInformationAboutEventsByDate();
