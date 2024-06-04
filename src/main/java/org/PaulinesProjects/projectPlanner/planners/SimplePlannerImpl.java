@@ -75,7 +75,7 @@ public class SimplePlannerImpl implements Planner {
     }
 
     @Override
-    public void deleteEventById(int idOfEvent) {
-        eventList.removeIf(t -> t.getIdOfEvent() == idOfEvent);
+    public boolean deleteEventById(int idOfEvent) {
+        return eventList.removeIf(t -> t.getIdOfEvent() == idOfEvent);
     }
 }

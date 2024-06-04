@@ -15,5 +15,5 @@ public interface Planner {
 
     String getInformationAboutEventsByDate(LocalDate beginOfEvent);
 
-    void deleteEventById(int idOfEvent);
+    boolean deleteEventById(int idOfEvent);
 }

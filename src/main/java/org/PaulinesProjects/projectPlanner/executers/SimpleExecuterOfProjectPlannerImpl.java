@@ -138,8 +138,11 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
         try {
             System.out.println("Введите id удаляемого мероприятия:");
             int idOfEvent = consoleScanner.nextInt();
-            planner.deleteEventById(idOfEvent);
-            System.out.println("Мероприятие с id " + idOfEvent + " было успешно удалено!");
+            if (planner.deleteEventById(idOfEvent)) {
+                System.out.println("Мероприятие с id " + idOfEvent + " было успешно удалено!");
+            } else {
+                System.out.println("Мероприятия с таким id не найдено");
+            }
         } catch (Exception exception) {
             System.out.println("Возникли проблемы! Попробуйте ещё раз!");
             deleteEventById();
