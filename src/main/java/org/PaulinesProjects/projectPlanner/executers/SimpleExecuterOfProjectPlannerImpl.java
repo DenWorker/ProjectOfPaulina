@@ -52,15 +52,15 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
     @Override
     public void test() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        planner.addEvent(LocalDateTime.parse("2023-05-23 18:23", dateTimeFormatter), LocalDateTime.parse("2023-05-23 20:23", dateTimeFormatter), "Покодить");
-        planner.addEvent(LocalDateTime.parse("2023-05-24 18:23", dateTimeFormatter), LocalDateTime.parse("2023-05-24 20:23", dateTimeFormatter), "Покушать");
+        planner.addEvent(LocalDateTime.parse("2025-05-23 18:23", dateTimeFormatter), LocalDateTime.parse("2025-05-23 20:23", dateTimeFormatter), "Покодить");
+        planner.addEvent(LocalDateTime.parse("2025-05-24 18:23", dateTimeFormatter), LocalDateTime.parse("2025-05-24 20:23", dateTimeFormatter), "Покушать");
 
-        planner.addEvent(LocalDateTime.parse("2023-05-25 18:23", dateTimeFormatter), LocalDateTime.parse("2023-05-25 20:23", dateTimeFormatter), "Покушать");
-        planner.addEvent(LocalDateTime.parse("2023-05-25 12:00", dateTimeFormatter), LocalDateTime.parse("2023-05-25 14:00", dateTimeFormatter), "Порисовать");
-        planner.addEvent(LocalDateTime.parse("2023-05-25 14:00", dateTimeFormatter), LocalDateTime.parse("2023-05-25 16:00", dateTimeFormatter), "Позвонить подруге");
+        planner.addEvent(LocalDateTime.parse("2025-05-25 18:23", dateTimeFormatter), LocalDateTime.parse("2025-05-25 20:23", dateTimeFormatter), "Покушать");
+        planner.addEvent(LocalDateTime.parse("2025-05-25 12:00", dateTimeFormatter), LocalDateTime.parse("2025-05-25 14:00", dateTimeFormatter), "Порисовать");
+        planner.addEvent(LocalDateTime.parse("2025-05-25 14:00", dateTimeFormatter), LocalDateTime.parse("2025-05-25 16:00", dateTimeFormatter), "Позвонить подруге");
 
-        planner.addEvent(LocalDateTime.parse("2023-05-26 18:23", dateTimeFormatter), LocalDateTime.parse("2023-05-26 20:23", dateTimeFormatter), "Покушать");
-        planner.addEvent(LocalDateTime.parse("2023-05-26 12:00", dateTimeFormatter), LocalDateTime.parse("2023-05-26 13:00", dateTimeFormatter), "Посмотреть телевизор");
+        planner.addEvent(LocalDateTime.parse("2025-05-26 18:23", dateTimeFormatter), LocalDateTime.parse("2025-05-26 20:23", dateTimeFormatter), "Покушать");
+        planner.addEvent(LocalDateTime.parse("2025-05-26 12:00", dateTimeFormatter), LocalDateTime.parse("2025-05-26 13:00", dateTimeFormatter), "Посмотреть телевизор");
     }
 
     private void addEvent() {
