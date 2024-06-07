@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 @AllArgsConstructor
@@ -32,14 +31,7 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
                                         
                     """);
 
-            try {
-                command = consoleScanner.nextInt();
-            } catch (InputMismatchException inputMismatchException) {
-                System.out.println("Неверный ввод данных");
-                run();
-                break;
-            }
-
+            command = consoleScanner.nextInt();
             switch (command) {
                 case 1 -> showInformationAboutAllEvents();
                 case 2 -> showInformationAboutEventsByDate();
@@ -147,6 +139,10 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
                 throw new RuntimeException("Время начала не может быть больше времени окончания!");
             }
 
+            if (timeOfBegin.isBefore(LocalTime.now())) {
+                throw new RuntimeException("Время начала не может быть больше чем сейчас!");
+            }
+
             System.out.println("Введите мероприятие:");
             String event = consoleScanner.nextLine();
             planner.addEventOfTomorrow(timeOfBegin, timeOfEnd, event);
@@ -190,11 +186,7 @@ public class SimpleExecuterOfProjectPlannerImpl implements ExecuterOfProjectPlan
 
             LocalDate beginOfEvent = LocalDate.parse(consoleScanner.nextLine());
             System.out.println(planner.getInformationAboutEventsByDate(beginOfEvent));
-
-        } catch (DateTimeParseException dateTimeParseException) {
-            System.out.println("Неверный формат ввода даты и времени!");
-            showInformationAboutEventsByDate();
-        } catch (Exception exception) {
+        }catch (Exception exception) {
             System.out.println("Возникли проблемы! Попробуйте ещё раз!");
             showInformationAboutEventsByDate();
         }
